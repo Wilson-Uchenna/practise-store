@@ -1,0 +1,20 @@
+@if (loading) {
+  <div class="text-gray-600">Loading images...</div>
+} @else {
+  @if (images.length === 0) {
+    <div class="text-gray-600">No images found.</div>
+  } @else {
+    <div class="container pt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto">
+      @for (img of images; track img.id) {
+        <app-product-item [img]="img" (add)="onAddToCart($event)"></app-product-item>
+      }
+    </div>
+  }
+
+  <!-- Refresh button shown only when not loading -->
+  <div class="flex justify-center align-items my-1">
+    <button (click)="loadMore()" class=" px-4 py-2 bg-indigo-600 text-white rounded">
+    {{ loading ? 'Loading...' : 'Load Images' }}
+    </button>
+  </div>
+}

@@ -1,0 +1,41 @@
+<div class="container mx-auto flex items-center justify-between w-full gap-4">
+  <!-- Product Image -->
+  <div>
+    @if (item?.product?.urls) {
+      <img
+        src="{{ item!.product.urls.regular }}"
+        alt="{{ item!.product.name }}"
+        class="w-20 h-32 object-cover rounded"
+      />
+    }
+  </div>
+
+  <!-- Product Info and Quantity Control -->
+  <div class="flex-1">
+    <!-- Product Name and Price -->
+    <div>
+      <p class="font-semibold text-xs">{{ item?.product?.name }}</p>
+      <p class="text-xs text-gray-600">
+        {{ item?.product?.price?.toFixed(2) | currency }}
+      </p>
+    </div>
+
+    <!-- Quantity Dropdown -->
+    <select
+      id="qty"
+      [formControl]="quantityControl"
+      class="w-48 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      @for (qty of quantities; track qty) {
+        <option [value]="qty">{{ qty }}</option>
+      }
+    </select>
+
+    <button
+      class="block mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-slate-600"
+      (click)="onRemove()"
+    >
+      X
+    </button>
+  </div>
+</div>

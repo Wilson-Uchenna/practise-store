@@ -12,48 +12,54 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+# 🛒 Angular E-Commerce Cart App
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+This is a simple e-commerce cart application built with **Angular**. Users can browse products, add items to a cart, adjust quantities, and complete a checkout form with validation and feedback. The app uses **Reactive Forms**, **Control Flow Syntax**, and **Material UI snackbars**.
 
-```bash
-ng generate component component-name
-```
+## 🚀 Features
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Browse random product images from Unsplash
+- Add products to cart with quantity control
+- Modify or remove cart items
+- Real-time total cost and item count
+- Validated checkout form (name, shipping address, credit card)
+- Snack bar notifications for success and error
+- Checkout confirmation page
+- Caching of product images using localStorage
 
-```bash
-ng generate --help
-```
+## 🧱 Tech Stack
 
-## Building
+- Angular 17+
+- RxJS & Signals
+- Tailwind CSS (or Angular styles)
+- Angular Material (SnackBars)
+- Unsplash API (for random images)
+- localStorage (caching)
+- TypeScript
 
-To build the project run:
+## 📦 Installation
 
-```bash
-ng build
-```
+1. **Clone the repository**
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```bash
+   git clone https://github.com/your-username/angular-cart-app.git
+   cd angular-cart-app
 
-## Running unit tests
+## Configuration
+To fetch random product images, the app uses the Unsplash API.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Create an account on Unsplash Developers.
 
-```bash
-ng test
-```
+Get your ACCESS_KEY.
 
-## Running end-to-end tests
+Add it in the ImagesService.
 
-For end-to-end (e2e) testing, run:
+## Validation Rules
+Checkout form:
 
-```bash
-ng e2e
-```
+Name: Required, 3–60 characters
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Shipping Address: Required, 3+ characters
 
-## Additional Resources
+Credit Card Number: Required, minimum 16 digits
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

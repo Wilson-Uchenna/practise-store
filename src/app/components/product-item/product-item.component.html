@@ -1,0 +1,29 @@
+<div class="container mx-auto rounded shadow hover:scale-105 transition-transform overflow-hidden"
+  style="width: 300px;">
+  <!-- Image container -->
+
+  <div style="height: 200px;" class="overflow-hidden">
+    <a [routerLink]="['/products', img.id]">
+      <img [src]="img.urls.regular" [alt]="img.name" class="w-full h-full object-cover" />
+    </a>
+  </div>
+
+  <!-- Details container -->
+  <div class="p-3 bg-white">
+    <h3 class="text-lg font-semibold truncate">{{ img.name }}</h3>
+    <p class="text-gray-800 font-medium mt-1">${{ img.price?.toFixed(2) }}</p>
+    <div class="mt-3">
+      <label for="qty" class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+      <select id="qty" [formControl]="quantityControl"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        @for (qty of quantities; track qty) {
+        <option [value]="qty">{{ qty }}</option>
+        }
+      </select>
+    </div>
+    <button class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+      (click)="addToCart()">
+      Add to Cart
+    </button>
+  </div>
+</div>

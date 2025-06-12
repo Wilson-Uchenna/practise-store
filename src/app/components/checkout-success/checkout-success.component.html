@@ -1,0 +1,14 @@
+<div class="inset-0 mt-10 flex justify-center items-center bg-gray-100">
+  <div class="w-2/6 bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
+    <h1 class="text-xl font-bold mb-4 text-green-600">Checkout Successful!</h1>
+    <p class="mb-2">Thank You, {{ name }}</p>
+    <p class="mb-2">Address: {{ shippingAddress }}</p>
+    <p>Card: **** **** **** {{ creditCardNumber?.slice(-4) }}</p>
+
+    <button
+      class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      <a routerLink="/">Continue Shopping</a>
+      
+    </button>
+  </div>
+</div>
