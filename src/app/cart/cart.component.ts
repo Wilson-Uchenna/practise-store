@@ -6,11 +6,12 @@ import { CartService } from '../services/cart.service';
 import { CheckoutDataService } from '../services/checkout-data.service';
 import { CartItemComponent } from '../components/cart-item/cart-item.component';
 import { Router, RouterLink } from '@angular/router';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CartItemComponent, CurrencyPipe, ReactiveFormsModule, MatSnackBarModule, RouterLink],
+  imports: [CartItemComponent, CurrencyPipe, ReactiveFormsModule, MatSnackBarModule, RouterLink, FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -21,12 +22,37 @@ export class CartComponent {
   private router = inject(Router); // Add this if you're navigating
   private checkoutDataService = inject(CheckoutDataService);
 
+  name: string = '';
+shippingAddress: string = '';
+creditCardNumber: string = '';
+
+onNameChange(value: string) {
+  this.name = value;
+  console.log('Name changed via ngModelChange:', value);
+}
+
+onAddressChange(value: string) {
+  this.shippingAddress = value;
+  console.log('Address changed via ngModelChange:', value);
+}
+
+onCardChange(value: string) {
+  // strip out non-numeric characters for practice
+  this.creditCardNumber = value.replace(/\D/g, '');
+  console.log('Card changed via ngModelChange:', this.creditCardNumber);
+}
+
+
 
   cart$ = this.cartService.getCart();
 
   checkoutForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
-    creditCardNumber: ['', [Validators.required, Validators.minLength(16)]],
+    creditCardNumber: ['', [
+    Validators.required,
+    Validators.minLength(16),
+    Validators.pattern(/^[0-9]*$/)   // only numbers allowed
+  ]],
     shippingAddress: ['', [Validators.required, Validators.minLength(3)]],
   });
 
